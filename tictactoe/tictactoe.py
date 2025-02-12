@@ -102,25 +102,17 @@ def winner(board):
         if board[0][2] == board[1][1] == board[2][0] == sym:
             return sym
         sym = O  # Now check for O
-    return EMPTY
+    return None
 
 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    yes = 0
-    for i in board:
-        for j in i:
-            if j != EMPTY:
-                yes = 1
-    if yes == 0:
-        return False
-    
-    if winner(board) == EMPTY:
-        return False
-    else:
+    if winner(board) is not None or (not any(EMPTY in sublist for sublist in board)):
         return True
+    else:
+        return False
 
 
 def utility(board):
@@ -141,37 +133,46 @@ def minimax(board):
     """Returns the optimal action for the current player on the board."""
     if terminal(board):
         return None  # No action needed if the game is over
-    
+
     if player(board) == X:
         best_action, best_value = max_value(board)
+        return best_action
     else:
         best_action, best_value = min_value(board)
-    return best_action # Return the action, not the value
+        return best_action  # Return the action, not the value
 
 
 def min_value(board):
     if terminal(board):
-        return None, utility(board) # Return None for action, utility for value
+        return None, utility(board)  # Return None for action, utility for value
 
     v = math.inf
     best_action = None
     for action in actions(board):
-        _, value = max_value(result(board, action)) # Discard the action returned by max_value
+        _, value = max_value(
+            result(board, action)
+        )  # Discard the action returned by max_value
         if value < v:
             v = value
             best_action = action
+            if v == -1:
+                return best_action, v
     return best_action, v
 
 
 def max_value(board):
     if terminal(board):
-        return None, utility(board) # Return None for action, utility for value
+        return None, utility(board)  # Return None for action, utility for value
 
     v = -math.inf
     best_action = None
     for action in actions(board):
-        _, value = min_value(result(board, action)) # Discard the action returned by min_value
+        _, value = min_value(
+            result(board, action)
+        )  # Discard the action returned by min_value
         if value > v:
             v = value
             best_action = action
+            if v == 1:
+                return best_action, v
     return best_action, v
