@@ -30,7 +30,7 @@ knowledge1 = And(
 )
 
 # Puzzle 2
-# A says "We are the same kind."
+# A says "We are the same kind.                                                                             "
 # B says "We are of different kinds."
 knowledge2 = And(
     And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
