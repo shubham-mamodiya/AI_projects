@@ -67,6 +67,6 @@ Lily,,,
 ## Credits
 
 - The logic is inspired by the CS50 AI course.
-- This file was created with the assistance of AI (GitHub Copilot) for my end.
+- Github copilot for readme.md file.
 
 ---
