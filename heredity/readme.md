@@ -31,7 +31,7 @@ Lily,,,
 ## Credits
 
 - The logic is inspired by the CS50 AI course.
-- This file was created with the assistance of AI (GitHub Copilot) for my end.
+- This readme.md file was created with the assistance of AI.
 
 ---
 ```# Heredity
