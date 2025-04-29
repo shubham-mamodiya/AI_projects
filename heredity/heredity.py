@@ -161,6 +161,7 @@ def joint_probability(people, one_gene, two_genes, have_trait):
         person_prob *= PROBS["trait"][person_gene_count][observed_trait]
 
         joint_prob *= person_prob
+        
     return joint_prob
 
 
